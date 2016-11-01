@@ -1,0 +1,3 @@
+#!/bin/bash
+docker build -t testimage1 -f Dockerfile1 .
+docker build -t testimage2 -f Dockerfile2 .

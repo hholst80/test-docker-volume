@@ -1,0 +1,3 @@
+FROM ubuntu:16.04
+ADD testfile1.txt /data/testfile.txt
+CMD echo "$(ls -lah /data/testfile.txt) | Contents: $(cat /data/testfile.txt)"

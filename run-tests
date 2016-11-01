@@ -1,0 +1,21 @@
+#!/bin/bash
+function run {
+	(
+	set -x
+	docker run -it --rm $*
+	)
+}
+
+run testimage1
+run testimage2
+
+VOLUME=$(docker volume create)
+function cleanup {
+	docker volume rm $VOLUME
+}
+trap cleanup 0
+
+run -v $VOLUME:/data testimage1
+run -v $VOLUME:/data testimage2
+run -v $VOLUME:/data ubuntu:16.04 cat /data/testfile.txt
+
